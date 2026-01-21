@@ -3,7 +3,7 @@
 
 import { pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 import { relations } from "drizzle-orm";
-// key is wat we have in code
+// key is what we have in code
 export const users = pgTable("users", {
     id: text("id").primaryKey(), //clerk user id
     email: text("email").notNull().unique(),
