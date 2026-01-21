@@ -1,4 +1,5 @@
 // Users table schema
+// so what we did and learn here is how 3 different tables and relations between them are created using Drizzle ORM
 
 import { pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 import { relations } from "drizzle-orm";
@@ -70,3 +71,10 @@ export const commentsRelations = relations(comments, ({ one }) => ({
         references: [products.id],
     }), // one comment = to one product
 }));
+
+export type User = typeof users.$inferSelect;
+export type NewUser = typeof users.$inferInsert;
+export type Product = typeof products.$inferSelect;
+export type NewProduct = typeof products.$inferInsert;
+export type Comment = typeof comments.$inferSelect;
+export type NewComment = typeof comments.$inferInsert;
