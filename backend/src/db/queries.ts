@@ -28,7 +28,6 @@ export const updateUser = async (id: string, data: Partial<NewUser>) => {
 export const upsertUser = async (data: NewUser) => {
     const existingUser = await getUserById(data.id);
     if (existingUser) return updateUser(data.id, data);
-
     return createUser(data);
 };
 
@@ -52,8 +51,39 @@ export const getProductById = async (id: string) => {
             user: true,
             comments: {
                 with: {user: true},
-                orderBy: (products, {desc}) => [desc(products.createdAt)]
+                orderBy: (comments, {desc}) => [desc(comments.createdAt)]
             }
         }
     })
-}
+};
+
+export const getProductByUserId = async (userId: string) => {
+    return db.query.products.findMany({
+        where: eq(products.userId, userId),
+        with : {user: true},
+        orderBy: (products, {desc}) => [desc(products.createdAt)],
+    });
+};
+
+export const updateProduct = async (id: string, data: Partial<NewProduct>) => {
+    const [product] = await db.update(products).set(data).where(eq(products.id, id)).returning();
+    return product;
+};
+
+// comment queries
+export const createComment = async (data: NewComment) => {
+    const [comment] = await db.insert(comments).values(data).returning();
+    return comment;
+};
+
+export const deleteComment = async (id: string) => {
+    const [comment] = await db.delete(comments).where(eq(comments.id, id)).returning();
+    return comment;
+};
+
+export const getCommentsById = async (id: string) => {
+    return db.query.comments.findFirst({
+        where: eq(comments.id, id),
+        with: { user: true},
+    });
+};
