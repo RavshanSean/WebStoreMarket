@@ -1,4 +1,4 @@
-// Users table schema
+// User table schema
 // so what we did and learn here is how 3 different tables and relations between them are created using Drizzle ORM
 
 import { pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
@@ -14,7 +14,7 @@ export const users = pgTable("users", {
 });
 
 
-// Products table schema
+// Produc table schema
 export const products = pgTable("products", {
     id: uuid("id").defaultRandom().primaryKey(),
     title: text("title").notNull(),
@@ -28,7 +28,7 @@ export const products = pgTable("products", {
 });
 
 
-// Comments table schema
+// Coment table schema
 export const comments = pgTable("comments", {
     id: uuid("id").defaultRandom().primaryKey(),
     content: text("content").notNull(),
@@ -45,8 +45,8 @@ export const comments = pgTable("comments", {
 
 // user relations
 export const usersRelations = relations(users, ({ many }) => ({
-    products: many(products), // one user = to many products
-    comments: many(comments), // one user = to many comments
+    products: many(products), // one user its = to many products
+    comments: many(comments), // one user its = to many comments
 }));
 
 
