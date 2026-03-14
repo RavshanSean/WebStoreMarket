@@ -20,7 +20,7 @@ function EditProductPage() {
         <div className="card-body items-center text-center">
           <h2 className="card-title text-error">{!product ? "Not found" : "Access denied"}</h2>
           <Link to="/" className="btn btn-primary btn-sm">
-            Go Home
+            Go Home.
           </Link>
         </div>
       </div>
