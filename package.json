@@ -1,0 +1,22 @@
+{
+  "name": "productify",
+  "version": "1.0.0",
+  "desription": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend && npm run build --prefix backend",
+    "start": "npm run db:push --prefix backend && npm run start --prefix backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RavshanSean/WebStoreMarket.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/RavshanSean/WebStoreMarket/issues"
+  },
+  "homepage": "https://github.com/RavshanSean/WebStoreMarket#readme"
+}
